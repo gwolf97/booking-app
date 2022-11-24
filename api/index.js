@@ -11,7 +11,7 @@ dotenv.config()
 
 const connect = async () =>{
     try {
-        await mongoose.connect(process.env.MONGO)
+        await mongoose.connect(process.env.MONGO_URI)
         console.log("Connected to mongoDB")
     } catch (error) {
         throw error
@@ -25,6 +25,8 @@ mongoose.connection.on("disconnected", () => {
 mongoose.connection.on("connected", () => {
     console.log("mongoDB connected!")
 })
+
+app.use(express.json())
 
 app.use("/auth", authRoute)
 app.use("/users", usersRoute)
