@@ -4,25 +4,25 @@ import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router()
 
-router.get("/checkauthentication", verifyToken, (req,res,next) =>{
-    res.send("hello user, you are logged in")
-})
+//router.get("/checkauthentication", verifyToken, (req,res,next) =>{
+//res.send("hello user, you are logged in")
+//})
+//
+//router.get("/checkuser/:id", verifyUser, (req,res,next) =>{
+//    res.send("hello user, you are logged in and can make changes to your account")
+//})
+//
+//router.get("/checkadmin/:id", verifyAdmin, (req,res,next) =>{
+//    res.send("hello admin, you are logged in and can make changes to all accounts")
+//})
 
-router.get("/checkuser/:id", verifyUser, (req,res,next) =>{
-    res.send("hello user, you are logged in and can make changes to your account")
-})
+router.put("/:id", verifyUser, updateUser)
 
-router.get("/checkadmin/:id", verifyAdmin, (req,res,next) =>{
-    res.send("hello admin, you are logged in and can make changes to all accounts")
-})
+router.delete("/:id", verifyUser, deleteUser)
 
-router.put("/:id", updateUser)
+router.get("/:id", verifyUser, getUser)
 
-router.delete("/:id", deleteUser)
-
-router.get("/:id", getUser)
-
-router.get("/", getAllUsers)
+router.get("/", verifyAdmin, getAllUsers)
 
 
 
