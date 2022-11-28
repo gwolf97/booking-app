@@ -53,6 +53,12 @@ import {
       dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
       navigate("/hotels", { state: { destination, dates, options } });
     };
+
+    const onKeyUp = (e) => {
+      if (e.charCode === 13) {
+        handleSearch()
+      }
+    }
   
     return (
       <div className="header">
@@ -100,6 +106,7 @@ import {
                     type="text"
                     placeholder="Where are you going?"
                     className="headerSearchInput"
+                    onKeyPress={e => onKeyUp(e)}
                     onChange={(e) => setDestination(e.target.value)}
                   />
                 </div>
