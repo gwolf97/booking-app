@@ -11,6 +11,11 @@
     max-width: 1024px;
     margin: 20px 0px 100px 0px;
   }
+
+
+  .headerTitle, .headerDesc , .headerList{
+    padding: 0 20px;
+  }
   
   .headerContainer.listMode {
     margin: 20px 0px 0px 0px;
@@ -58,12 +63,12 @@
     border-radius: 5px;
     position: absolute;
     bottom: -25px;
-    width: 100%;
+    width: 100vw;
     max-width: 1024px;
   }
   
   .headerIcon {
-    color: lightgray;
+    color: grey;
   }
   
   .headerSearchItem {
@@ -78,7 +83,7 @@
   }
   
   .headerSearchText {
-    color: lightgray;
+    color: grey;
     cursor: pointer;
   }
   
@@ -125,4 +130,63 @@
   
   .optionCounterButton:disabled {
     cursor: not-allowed;
+  }
+
+  @media screen and (max-width:650px){
+
+    .header{
+      height: 500px;
+      margin-bottom: 80px ;
+    }
+
+    .headerContainer{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: left;
+    }
+
+
+    .headerBtn {
+      background-color: #0071c2;
+      color: white;
+      font-weight: 500;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    
+    .headerSearch {
+      height: 120px;
+      width: 80vw;
+      background-color: white;
+      border: 3px solid #febb02;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 10px;
+      border-radius: 5px;
+      bottom: -40px;
+    }
+    
+    .headerIcon {
+      color: grey;
+    }
+    
+    .headerSearchItem {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .headerSearchInput {
+      border: none;
+      outline: none;
+    }
+    
+    .headerSearchText {
+      color: grey;
+      cursor: pointer;
+    }
   }

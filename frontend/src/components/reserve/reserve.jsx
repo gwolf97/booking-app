@@ -67,8 +67,6 @@ const Reserve = ({ setOpen, hotelId }) => {
     } catch (err) {}
   };
 
-  console.log(data)
-
   return (
     <div className="reserve">
       <div className="rContainer">
