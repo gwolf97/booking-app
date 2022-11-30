@@ -31,6 +31,7 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
 
+
   const isAvailable = (roomNumber) => {
     const isFound = roomNumber.unavailableDates.some((date) =>
       alldates.includes(new Date(date).getTime())
@@ -55,7 +56,6 @@ const Reserve = ({ setOpen, hotelId }) => {
     try {
       await Promise.all(
         selectedRooms.map((roomId) => {
-          console.log(roomId, alldates)
           const res = axios.put(`/rooms/availability/${roomId}`, {
             dates: alldates,
           });
@@ -66,6 +66,9 @@ const Reserve = ({ setOpen, hotelId }) => {
       navigate("/");
     } catch (err) {}
   };
+
+  console.log(data)
+
   return (
     <div className="reserve">
       <div className="rContainer">
@@ -83,11 +86,11 @@ const Reserve = ({ setOpen, hotelId }) => {
               <div className="rMax">
                 Max people: <b>{item.maxPeople}</b>
               </div>
-              <div className="rPrice">${item.price}</div>
+              <div className="rPrice">{item.price}</div>
             </div>
             <div className="rSelectRooms">
               {item.roomNumbers.map((roomNumber) => (
-                <div key={roomNumber.number} className="room">
+                <div className="room">
                   <label>{roomNumber.number}</label>
                   <input
                     type="checkbox"
