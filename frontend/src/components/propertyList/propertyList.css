@@ -1,10 +1,21 @@
 .pList{
-    width: 100%;
-    max-width: 1024px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-  }
+  width: 98%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 1;
+  margin-top: 60px ;
+}
+
+.pList-container{
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 1;
+}
   
   .pListItem{
     flex:1;
@@ -29,3 +40,26 @@
     font-size: 14px;
     font-weight: 300;
   }
+
+
+@media screen and (max-width: 700px){
+  .pList {
+    width: 100vw;
+    overflow: scroll;
+    display: block;
+    margin-top: 0;
+    }
+    
+    .pList::-webkit-scrollbar{
+      display: none;
+    }
+  
+    .pList-container{
+      padding: 0 10px;
+      width: 700px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 20px;
+    }
+}

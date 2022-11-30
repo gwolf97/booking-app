@@ -16,7 +16,7 @@ const PropertyList = () => {
       {loading ? (
         "loading"
       ) : (
-        <>
+        <div className="pList-container">
           {data &&
             images.map((img,i) => (
               <div className="pListItem" key={i}>
@@ -31,7 +31,7 @@ const PropertyList = () => {
                 </div>
               </div>
             ))}
-        </>
+        </div>
       )}
     </div>
   );

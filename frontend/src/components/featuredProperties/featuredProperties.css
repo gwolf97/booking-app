@@ -1,11 +1,23 @@
-.fp {
-    width: 100%;
-    max-width: 1024px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  
+.fp{
+  width: 98%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 1;
+  margin-top: 60px ;
+}
+
+.fp-container{
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 1;
+}
+
+
   .fpItem{
     flex: 1;
     gap: 10px;
@@ -43,4 +55,26 @@
   
   .fpRating>span{
     font-size: 14px;
+  }
+
+  @media screen and (max-width: 700px){
+    .fp {
+      width: 100vw;
+      overflow: scroll;
+      display: block;
+      margin-top: 0;
+      }
+      
+      .fp::-webkit-scrollbar{
+        display: none;
+      }
+    
+      .fp-container{
+        padding: 0 10px;
+        width: 700px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+      }
   }

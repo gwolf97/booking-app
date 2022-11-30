@@ -1,5 +1,5 @@
 .mail{
-    width: 100%;
+    width: 100vw;
     margin-top: 50px;
     background-color: #003580;
     color: white;
@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding: 50px;
+    padding: 50px 0;
   }
   
   .mailInputContainer>input{
@@ -27,4 +27,19 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+  }
+
+  @media screen and (max-width:650px) {
+    .mailTitle, .mailDesc{
+      padding: 0px 10px;
+    }
+   
+    .mailInputContainer>input{
+      width: 50vw;
+      height: 30px;
+      padding: 10px;
+      border: none;
+      margin-right: 10px;
+      border-radius: 5px;
+    }
   }
