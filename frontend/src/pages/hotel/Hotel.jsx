@@ -8,7 +8,7 @@ import {
   faCircleArrowLeft,
   faCircleArrowRight,
   faCircleXmark,
-  faLocationDot,
+  faLocationDot, 
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import useFetch from "../../hooks/useFetch";
@@ -29,6 +29,8 @@ const Hotel = () => {
   const navigate = useNavigate();
 
   const { dates, options } = useContext(SearchContext);
+
+  console.log(dates)
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
@@ -133,7 +135,7 @@ const Hotel = () => {
                 <span>
                   Located in the real heart of Krakow, this property has an
                   excellent location score of 9.8!
-                </span>
+                </span> 
                 <h2>
                   <b>${data.cheapestPrice} per night <br/> ${days * data.cheapestPrice * options.room}</b> ({days}{" "}
                   nights)
