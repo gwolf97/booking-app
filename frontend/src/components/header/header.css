@@ -136,7 +136,7 @@
   @media screen and (max-width:650px){
 
     .header{
-      height: 500px;
+      height: 460px;
       margin-bottom: 60px ;
     }
 
@@ -189,5 +189,9 @@
     .headerSearchText {
       color: grey;
       cursor: pointer;
+    }
+
+    .date{
+     width: 300px;
     }
   }
