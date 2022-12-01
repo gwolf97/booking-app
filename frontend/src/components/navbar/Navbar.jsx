@@ -21,8 +21,6 @@ const Navbar = () => {
     }
   };
 
-  console.log(user)
-
   return (
     <div className="navbar">
       <div className="navContainer">
