@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 
 const INITIAL_STATE = {
-  user: JSON.parse(localStorage.getItem("user")) || null,
+  user: JSON.parse(localStorage.getItem("user")) | 0,
   loading: false,
   error: null,
 };
@@ -29,11 +29,13 @@ const AuthReducer = (state, action) => {
         error: action.payload,
       };
     case "LOGOUT":
-      return {
-        user: null,
-        loading: false,
-        error: null,
-      };
+      localStorage.removeItem("user")
+      window.location.href = "/"
+      document.cookie.split(";").forEach((c) => {
+        document.cookie = c
+          .replace(/^ +/, "")
+          .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+      });
     default:
       return state;
   }
@@ -43,7 +45,7 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(state.user));
+      localStorage.setItem("user", JSON.stringify(state.user));
   }, [state.user]);
 
   return (

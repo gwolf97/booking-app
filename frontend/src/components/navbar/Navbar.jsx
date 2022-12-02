@@ -3,22 +3,14 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [openOptions, setOpenOptions] = useState(false)
   const { user, dispatch } = useContext(AuthContext);
-  const navigate = useNavigate()
 
   const handleClick = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     dispatch({ type: "LOGOUT" });
-    try {
-      dispatch({ type: "LOGIN_SUCCESS"});
-      navigate("/")
-    } catch (err) {
-      console.log(err)
-    }
   };
 
   return (
