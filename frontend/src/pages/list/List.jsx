@@ -7,6 +7,9 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
+import { useContext } from "react";
+import { SearchContext } from "../../context/SearchContext";
+import { useNavigate } from "react-router-dom";
 
 const List = () => {
   const location = useLocation();
@@ -24,6 +27,8 @@ const List = () => {
 
   const handleClick = () => {
     setDestination(input)
+    setOpenDate(false)
+    handleSearch()
     reFetch();
   };
 
@@ -32,6 +37,15 @@ const List = () => {
       handleClick()
     }
   }
+    
+  const navigate = useNavigate()
+
+  const { dispatch } = useContext(SearchContext);
+  
+  const handleSearch = () => {
+    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+    navigate("/hotels", { state: { destination, dates, options } });
+  };
 
   return (
     <div>
@@ -68,7 +82,7 @@ const List = () => {
                   <span className="lsOptionText">
                     Min price <small>per night</small>
                   </span>
-                  <input
+                  <input 
                     type="number"
                     onChange={(e) => setMin(e.target.value)}
                     className="lsOptionInput"
