@@ -26,7 +26,7 @@ const List = () => {
   );
 
   const handleClick = () => {
-    setDestination(input)
+    setDestination(input.toLowerCase())
     setOpenDate(false)
     handleSearch()
     reFetch();

@@ -97,7 +97,7 @@ import {
                     placeholder="Where are you going?"
                     className="headerSearchInput"
                     onKeyPress={e => onKeyUp(e)}
-                    onChange={(e) => setDestination(e.target.value)}
+                    onChange={(e) => setDestination(e.target.value.toLowerCase())}
                   />
                 </div>
                 <div className="headerSearchItem">
