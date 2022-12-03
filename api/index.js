@@ -8,6 +8,7 @@ import roomsRoute from "./routes/rooms.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import {fileURLToPath} from "url"
+import path from "path"
 const app = express()
 dotenv.config()
 
@@ -52,10 +53,10 @@ app.use((err,req,res,next)=>{
     })
 })
 
-app.use(express.static(path.join(_dirname, "../client/build")));
+app.use(express.static(path.join(_dirname, "../frontend/build")));
 
 app.get("*", function (request, response) {
-  response.sendFile(path.resolve(_dirname, "../client", "build", "index.html"));
+  response.sendFile(path.resolve(_dirname, "../frontend", "build", "index.html"));
 });
 
 const PORT = process.env.PORT || 5000
