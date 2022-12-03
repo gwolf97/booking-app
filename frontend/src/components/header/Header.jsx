@@ -9,14 +9,14 @@ import {
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import "./header.css";
   import { DateRange } from "react-date-range";
-  import { useContext, useState } from "react";
+  import { useContext, useEffect, useState } from "react";
   import "react-date-range/dist/styles.css"; // main css file
   import "react-date-range/dist/theme/default.css"; // theme css file
   import { format } from "date-fns";
   import { useNavigate } from "react-router-dom";
   import { SearchContext } from "../../context/SearchContext";
   import { AuthContext } from "../../context/AuthContext";
-  
+
   const Header = ({ type }) => {
     const [destination, setDestination] = useState("");
     const [openDate, setOpenDate] = useState(false);
@@ -53,6 +53,10 @@ import {
       dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
       navigate("/hotels", { state: { destination, dates, options } });
     };
+
+    useEffect(() => {
+     type !== "list" && dispatch({type:"RESET_SEARCH"})
+    }, [])
 
     const onKeyUp = (e) => {
       if (e.charCode === 13) {

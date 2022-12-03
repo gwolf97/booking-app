@@ -10,7 +10,7 @@ import {
   faCircleXmark,
   faLocationDot, 
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
@@ -28,9 +28,19 @@ const Hotel = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { dates, options } = useContext(SearchContext);
+  const { options } = useContext(SearchContext);
 
-  console.log(dates)
+  const dates2 = JSON.parse(localStorage.getItem("dates"))
+  const {startDate, endDate} = dates2[0]
+
+  const timeParse = (time) => {
+    let x = new Date(time);
+    let hoursDiff = x.getHours() - x.getTimezoneOffset() / 60;
+    let minutesDiff = (x.getHours() - x.getTimezoneOffset()) % 60;
+    x.setHours(hoursDiff);
+    x.setMinutes(minutesDiff);
+    return x
+  }  
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
@@ -39,7 +49,7 @@ const Hotel = () => {
     return diffDays;
   }
 
-  const days = dayDifference(dates[0].endDate, dates[0].startDate);
+  const days = dayDifference(timeParse(endDate), timeParse(startDate));
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -137,7 +147,7 @@ const Hotel = () => {
                   excellent location score of 9.8!
                 </span> 
                 <h2>
-                  <b>${data.cheapestPrice} per night <br/> ${days * data.cheapestPrice * options.room}</b> ({days}{" "}
+                  <b>${data.cheapestPrice} per night <br/> ${days * data.cheapestPrice}</b> ({days}{" "}
                   nights)
                 </h2>
                 <button onClick={handleClick}>Reserve or Book Now!</button>
