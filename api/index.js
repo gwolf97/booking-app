@@ -7,9 +7,13 @@ import hotelsRoute from "./routes/hotels.js"
 import roomsRoute from "./routes/rooms.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import {fileURLToPath} from "url"
 const app = express()
 dotenv.config()
 
+const __filename = fileURLToPath(import.meta.url);
+
+const _dirname = path.dirname(__filename)
 
 const connect = async () =>{
     try {
@@ -48,7 +52,15 @@ app.use((err,req,res,next)=>{
     })
 })
 
-app.listen(5000, () => {
+app.use(express.static(path.join(_dirname, "../client/build")));
+
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(_dirname, "../client", "build", "index.html"));
+});
+
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, () => {
     connect()
-    console.log("Connected to port 5000")
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 })
