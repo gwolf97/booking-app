@@ -10,10 +10,6 @@ import { SearchContext } from "../../context/SearchContext";
 import "./home.css";
 
 const Home = () => {
-
-
-
-
   return (
     <div>
       <Navbar />
