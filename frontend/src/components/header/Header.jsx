@@ -62,7 +62,7 @@ import {
   
     return (
       <div 
-        onClick={() => {openDate && setOpenDate(false); openOptions && setOpenOptions(false)}} 
+        onClick={() => {openOptions && setOpenOptions(false)}} 
         className={type === "list" ? "header header-list-mode" : "header"}
       >
         <div
