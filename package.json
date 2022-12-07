@@ -1,22 +1,28 @@
-{ 
-   "name": "mern-booking-app",
-    "version": "1.0.0",
-    "description": "MERN booking app",
-    "engines": {
-      "node": "16.15.1"
-    },
-    "main": "index.js",
-    "type": "module",
+{
+  "name": "mern-booking-app",
+  "version": "1.0.0",
+  "description": "MERN booking app",
+  "engines": {
+    "node": "16.15.1"
+  },
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "install-frontend": "cd frontend && npm install --legacy-peer-deps",
+    "install-client": "cd frontend && npm install --legacy-peer-deps",
     "build": "cd frontend && npm run build",
     "start": "node api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api": "nodemon api/index",
-    "frontend": "npm start --prefix frontend",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-frontend && npm run build --prefix frontend"
+    "server": "nodemon api/index",
+    "client": "npm start --prefix frontend",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build --prefix frontend"
     },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.3",
+    "nodemon": "^2.0.20",
+    "yup": "^0.32.11",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "jsonwebtoken": "^8.5.1"
