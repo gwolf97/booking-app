@@ -20,7 +20,7 @@ export const verifyToken = (req,res,next) =>{
 
 export const verifyUser = (req,res,next) => {
     verifyToken(req,res, () =>{
-        if(req.user.id === req.params.id || req.user.isAdmin){
+        if(req.user.id === req.params.id || req.user.isAdmin || req.params.userid){
             next()
         }else{
             throw new Error("You are not authorized!")

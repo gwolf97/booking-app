@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js"
 import usersRoute from "./routes/users.js"
 import hotelsRoute from "./routes/hotels.js"
 import roomsRoute from "./routes/rooms.js"
+import bookingsRoute from "./routes/bookings.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import {fileURLToPath} from "url"
@@ -41,6 +42,7 @@ app.use("/auth", authRoute)
 app.use("/users", usersRoute)
 app.use("/hotels", hotelsRoute)
 app.use("/rooms", roomsRoute)
+app.use("/bookings", bookingsRoute)
 
 app.use((err,req,res,next)=>{
     const errorStatus = err.status || 500

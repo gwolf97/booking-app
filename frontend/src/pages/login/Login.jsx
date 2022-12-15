@@ -14,7 +14,12 @@ const Login = ({isLogin}) => {
     username: undefined,
     email: undefined,
     password: undefined,
+    country: undefined,
+    city: undefined,
+    phone: undefined,
   })
+
+  console.log(registerData)
 
   const [login, setLogin] = useState(isLogin)
 
@@ -107,6 +112,27 @@ const Login = ({isLogin}) => {
             type="text"
             placeholder="email"
             id="email"
+            onChange={handleChange}
+            className="lInput"
+          />
+          <input
+            type="text"
+            placeholder="country"
+            id="country"
+            onChange={handleChange}
+            className="lInput"
+          />
+          <input
+            type="text"
+            placeholder="city"
+            id="city"
+            onChange={handleChange}
+            className="lInput"
+          />
+          <input
+            type="text"
+            placeholder="phone"
+            id="phone"
             onChange={handleChange}
             className="lInput"
           />

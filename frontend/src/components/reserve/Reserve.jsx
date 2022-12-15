@@ -8,8 +8,9 @@ import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Reserve = ({ setOpen, hotelId }) => {
+const Reserve = ({ setOpen, hotelId, hotelName }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
+  const [bookingData, setBookingData] = useState({})
   const { data, loading, error } = useFetch(`/hotels/rooms/${hotelId}`);
   const { dates } = useContext(SearchContext);
 
@@ -52,9 +53,24 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const navigate = useNavigate();
 
+  const {username, _id:user_Id} = JSON.parse(localStorage.getItem("user"))
+
   const handleClick = async () => {
+    setBookingData({
+      user: username,
+      hotel:{
+        name: hotelName,
+        id: hotelId
+      },
+      rooms:selectedRooms,
+      dates:alldates
+    })
+
     try {
-      await Promise.all(
+
+       await axios.post(`/bookings/${user_Id}`, bookingData)
+
+       await Promise.all(
         selectedRooms.map((roomId) => {
           const res = axios.put(`/rooms/availability/${roomId}`, {
             dates: alldates,
@@ -62,9 +78,12 @@ const Reserve = ({ setOpen, hotelId }) => {
           return res.data;
         })
       );
+
       setOpen(false);
       navigate("/");
-    } catch (err) {}
+    } catch (err) {
+      console.log(err)
+    }
   };
 
   return (
