@@ -1,5 +1,5 @@
 import User from "../models/User.js"
-
+import Booking from "../models/Booking.js"
 
 export const updateUser = async(req,res,next) =>{
     try {
@@ -10,11 +10,14 @@ export const updateUser = async(req,res,next) =>{
     }
 }
 
-
 export const deleteUser = async(req,res,next) =>{
     try {
+        const user = await User.findById(req.params.id)
+        Promise.all(user.bookings.map(async (booking) => {
+            await Booking.findByIdAndDelete(booking)
+        }))
         await User.findByIdAndDelete(req.params.id)
-        res.status(200).json("User Deleted")
+        res.status(200).json("User and bookings Deleted")
     } catch (error) {
         next(error)
     }
